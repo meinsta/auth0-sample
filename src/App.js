@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
+import { render } from 'react-dom';
+import SortableTable from 'react-sortable-table';
 import logo from './logo.svg';
 import './App.css';
 

@@ -1,1 +1,1 @@
-Auth0 sample made love by Meina :)
+Auth0 sample made with love by Meina :)

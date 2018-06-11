@@ -4,9 +4,11 @@
   "private": true,
   "homepage": "http://meinsta.github.io/auth0-sample",
   "dependencies": {
+    "ajv": "^6.5.1",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
-    "react-scripts": "1.1.4"
+    "react-scripts": "1.1.4",
+    "react-sortable-table": "^1.3.0"
   },
   "scripts": {
     "predeploy": "npm run build",
