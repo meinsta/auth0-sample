@@ -7,8 +7,8 @@ class App extends React.Component {
     super();
     this.state = {      
       data: data,
-      orderBy: "first",
-      order: "First Name"
+      orderBy: "position",
+      order: "Position"
     };
     this.toggle = this.toggle.bind(this);
   }
@@ -35,12 +35,17 @@ class App extends React.Component {
       <div className="container">
         <div className="row">
           <div className="row-wrapper col-sm-8 col-sm-offset-2">
-            <div className="clearfix">
+            <div className="clearfix desktop">
               <Dropdown toggle={ this.toggle } 
                 orderBy={ this.state.orderBy }
                 order={ this.state.order } />
             </div>
             { items } 
+              <div className="clearfix mobile">
+              <Dropdown toggle={ this.toggle } 
+                orderBy={ this.state.orderBy }
+                order={ this.state.order } />
+            </div>
           </div>          
         </div>                
       </div>
@@ -58,17 +63,20 @@ class Dropdown extends React.Component {
     });      
           
     return (
+      <div className="filter">
+      <div className="logo"></div>
       <div className="dropdown">
         <div className="dropdown-heading">
           Order by 
           <span className="dropbtn">
-            {this.props.order}
+            {this.props.order}<span className="carat"></span>
           </span>
         </div>
         <ul className="dropdown-content">
           { output }
         </ul>
       </div>  
+      </div>
    )   
   }
 }
@@ -78,10 +86,11 @@ class Employee extends React.Component {
     const { data, orderBy } = this.props;
     const input = categories; 
     const output = input.map((item)=>{
-      return <div><small className={ orderBy === item ? "active" : null }>{item}:</small> {data[item] }</div>
+      return <div className="employee-position"><small className={ orderBy === item ? "active" : null }></small> {data[item] }</div>
     });
     return (    
-      <div className="card">
+      <div className="card" >
+        <div className="card-container" style={{ backgroundImage: "linear-gradient(rgba(255, 255,255, 0.45), rgba(255,255,255, 0.45)), url("+`${data.bg}`+")" }}  ></div>
         <div className="employee">
           <img className="avatar" src={ data.img } alt={`${data.first} ${data.last}` } /> 
         </div>
@@ -98,10 +107,10 @@ class Employee extends React.Component {
 }
 const names = [["first", "First Name"],["last", "Last Name"],["position","Position"]]
 const categories = ["position"]
-const data = [{"id":1,"first":"Yasmine","last":"Ahmed","img":"https://randomuser.me/api/portraits/women/99.jpg","position":"Analyst"},
-{"id":2,"first":"Gerardo","last":"Burmudez","img":"https://randomuser.me/api/portraits/men/2.jpg","position":"Engineer"},
-{"id":3,"first":"Juan","last":"Armstrong","img":"https://randomuser.me/api/portraits/men/49.jpg","position":"Designer"},
-{"id":4,"first":"Nooshin","last":"Mizrahi","img":"https://randomuser.me/api/portraits/women/36.jpg","position":"Producer"},
-{"id":5,"first":"Tamar","last":"Cohen","img":"https://randomuser.me/api/portraits/women/59.jpg","position":"Accountant"}];
+const data = [{"id":1,"first":"Yasmine","last":"Ahmed","img":"https://randomuser.me/api/portraits/women/99.jpg","position":"Analyst", "bg": "https://meinsta.github.io/auth0-sample/background/1.jpg"},
+{"id":2,"first":"Gerardo","last":"Burmudez","img":"https://randomuser.me/api/portraits/men/2.jpg","position":"Engineer", "bg": "https://meinsta.github.io/auth0-sample/background/2.jpg"},
+{"id":3,"first":"Juan","last":"Armstrong","img":"https://randomuser.me/api/portraits/men/49.jpg","position":"Designer", "bg": "https://meinsta.github.io/auth0-sample/background/3.jpg"},
+{"id":4,"first":"Nooshin","last":"Mizrahi","img":"https://randomuser.me/api/portraits/women/36.jpg","position":"Producer", "bg": "https://meinsta.github.io/auth0-sample/background/4.jpg"},
+{"id":5,"first":"Tamar","last":"Cohen","img":"https://randomuser.me/api/portraits/women/59.jpg","position":"Accountant", "bg": "https://meinsta.github.io/auth0-sample/background/5.jpg"}];
 
 export default App;

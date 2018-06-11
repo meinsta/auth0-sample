@@ -1,6 +1,21 @@
+.row-wrapper {
+    background: #222;
+    height: calc(100vh - 250px);
+    overflow-y: scroll;
+    padding: 10px;
+}
+
+.filter {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .dropbtn {
-    padding: 16px;
+    padding: 16px 6px;
     font-size: 16px;
+    font-weight: 600;
     border: none;
     cursor: pointer;
 }
@@ -8,6 +23,15 @@
 .dropdown {
     position: relative;
     display: inline-block;
+    color: #fff;
+}
+
+.dropdown-heading {
+    width: 220px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
 }
 
 .dropdown-content {
@@ -19,6 +43,7 @@
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
+    right: 0;
 }
 
 .dropdown-content a {
@@ -36,8 +61,41 @@
     display: block;
 }
 
+.logo {
+    width: 30px;
+    height: 30px;
+    background-image: url(https://avatars3.githubusercontent.com/u/2824157?s=200&v=4);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.carat {
+    display: inline-block;
+    left: 5px;
+    position: relative;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 7px 3.5px 0 3.5px;
+    border-color: #ffffff transparent transparent transparent;
+}
+
 .card {
     height: 250px;
+    margin: 10px 0;
+    overflow: hidden;
+    background-color: transparent;
+}
+
+.card-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    filter: blur(5px);
+    background-size: cover;
+    transform: scale(1.1);
 }
 
 .employee {
@@ -46,10 +104,66 @@
     align-items: center;
     width: 100%;
     position: absolute;
-    justify-content: center;
+    justify-content: flex-start;
+    margin: 30px 0 0 0;
     height: 250px;
+}
+
+.employee-position {
+    color: #777;
 }
 
 .avatar {
     border-radius: 50%;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+    position: relative;
+    margin: 0 0 10px 0;
+}
+
+.desktop {
+    display: none;
+}
+
+.mobile {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    height: 250px;
+    background: white;
+    width: 100%;
+    left: 0;
+}
+
+@media (min-width: 576px) {
+    .row-wrapper{
+        height: 100%;
+        overflow-y: visible;
+        padding: 30px;
+    }
+
+    .desktop {
+        display: block;
+    }
+
+    .mobile {
+        display: none;
+    }
+
+    .card .details {
+        margin: 30px;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+
+    .card .employee {
+        justify-content: center;
+        margin: 0;
+    }
 }
