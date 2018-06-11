@@ -8,28 +8,16 @@ class App extends React.Component {
     this.state = {      
       data: data,
       orderBy: "first",
-      order: "asc"
+      order: "First Name"
     };
-    this.updateOrderBy = this.updateOrderBy.bind(this);
-    this.updateOrder = this.updateOrder.bind(this);
     this.toggle = this.toggle.bind(this);
   }
   toggle(e){
     e.preventDefault();
-    let isActive = this.state.dropdownActive;
-    isActive = !isActive;
-    this.setState({dropdownActive: isActive});
+    this.setState({orderBy : e.target.getAttribute('data-value')});
+    this.setState({order: e.target.innerText})
   }
-  updateOrderBy(e){
-    e.preventDefault();
-    const newOrderBy = e.target.getAttribute('data-value');
-    this.setState({orderBy : newOrderBy});
-  }
-  updateOrder(e){
-    e.preventDefault();
-    const newOrder = e.target.getAttribute('data-value');
-    this.setState({order : newOrder});
-  }
+
   render() {    
     const orderBy = this.state.orderBy;
     const order = this.state.order;
@@ -49,9 +37,6 @@ class App extends React.Component {
           <div className="row-wrapper col-sm-8 col-sm-offset-2">
             <div className="clearfix">
               <Dropdown toggle={ this.toggle } 
-                dropdownActive={ this.state.dropdownActive } 
-                updateOrderBy={ this.updateOrderBy }
-                updateOrder={ this.updateOrder }
                 orderBy={ this.state.orderBy }
                 order={ this.state.order } />
             </div>
@@ -65,18 +50,21 @@ class App extends React.Component {
 
 class Dropdown extends React.Component {    
   render() { 
-    const { dropdownActive, toggle, orderBy, order, updateOrderBy, updateOrder } = this.props;
+    const { toggle, orderBy, order } = this.props;
     const checked = <span className="check"></span>;
     const input = names; // array from the bottom of this script
     const output = names.map((item)=>{
-        return <li><a href="#" onClick={ updateOrderBy }  data-value={ item[0]}>{item[1] } { orderBy === item[0] ? checked : null }</a></li>
+        return <li><a href="#" onClick={ toggle }  data-value={ item[0]}>{item[1] } { orderBy === item[0] ? checked : null }</a></li>
     });      
           
     return (
       <div className="dropdown">
-        <a className="dropbtn" onClick={ toggle } href="#">
-          Sort items by
-        </a>
+        <div className="dropdown-heading">
+          Order by 
+          <span className="dropbtn">
+            {this.props.order}
+          </span>
+        </div>
         <ul className="dropdown-content">
           { output }
         </ul>
@@ -108,7 +96,7 @@ class Employee extends React.Component {
     )
   }
 }
-const names = [["last", "last name"],["position","position"]]
+const names = [["first", "First Name"],["last", "Last Name"],["position","Position"]]
 const categories = ["position"]
 const data = [{"id":1,"first":"Yasmine","last":"Ahmed","img":"https://randomuser.me/api/portraits/women/99.jpg","position":"Analyst"},
 {"id":2,"first":"Gerardo","last":"Burmudez","img":"https://randomuser.me/api/portraits/men/2.jpg","position":"Engineer"},
