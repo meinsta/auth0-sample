@@ -36,6 +36,7 @@ class App extends React.Component {
         <div className="row">
           <div className="row-wrapper col-sm-8 col-sm-offset-2">
             <div className="clearfix desktop">
+              <div className="logo"></div>
               <Dropdown toggle={ this.toggle } 
                 orderBy={ this.state.orderBy }
                 order={ this.state.order } />
@@ -64,7 +65,6 @@ class Dropdown extends React.Component {
           
     return (
       <div className="filter">
-      <div className="logo"></div>
       <div className="dropdown">
         <div className="dropdown-heading">
           Order by 

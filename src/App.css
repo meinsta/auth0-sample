@@ -5,11 +5,8 @@
     padding: 10px;
 }
 
-.filter {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+.clearfix.desktop .filter {
+    display: none;
 }
 
 .dropbtn {
@@ -21,27 +18,27 @@
 }
 
 .dropdown {
-    position: relative;
-    display: inline-block;
-    color: #fff;
+    display: flex;
+    justify-content: center;
+    color: #000;
 }
 
 .dropdown-heading {
-    width: 220px;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
 }
 
 .dropdown-content {
+    box-shadow: none;
+    background: white;
+    width: 100%;
     display: none;
     position: absolute;
     list-style-type: none;
     padding: 0;
-    background-color: #f9f9f9;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
     right: 0;
 }
@@ -62,7 +59,8 @@
 }
 
 .logo {
-    width: 30px;
+    width: 100%;
+    background-position: center;
     height: 30px;
     background-image: url(https://avatars3.githubusercontent.com/u/2824157?s=200&v=4);
     background-size: contain;
@@ -77,7 +75,11 @@
     height: 0;
     border-style: solid;
     border-width: 7px 3.5px 0 3.5px;
-    border-color: #ffffff transparent transparent transparent;
+    border-color: #000 transparent transparent transparent;
+}
+
+.dropdown:hover .carat {
+    transform: rotate(180deg);
 }
 
 .card {
@@ -110,7 +112,7 @@
 }
 
 .employee-position {
-    color: #777;
+    color: #666;
 }
 
 .avatar {
@@ -127,10 +129,6 @@
     margin: 0 0 10px 0;
 }
 
-.desktop {
-    display: none;
-}
-
 .mobile {
     display: block;
     position: fixed;
@@ -145,15 +143,44 @@
     .row-wrapper{
         height: 100%;
         overflow-y: visible;
-        padding: 30px;
+        padding: 10px 30px 30px 30px;
     }
 
-    .desktop {
-        display: block;
+    .clearfix.desktop {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .clearfix.desktop .filter {
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
     }
 
     .mobile {
         display: none;
+    }
+
+    .logo {
+        width: 30px;
+    }
+
+    .dropdown {
+        color: #fff;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .dropdown-heading {
+        justify-content: flex-end;
+    }
+
+    .dropdown-content {
+        background-color: #f9f9f9;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        top: 50px;
     }
 
     .card .details {
@@ -165,5 +192,9 @@
     .card .employee {
         justify-content: center;
         margin: 0;
+    }
+
+    .carat {
+        border-color: #fff transparent transparent transparent;
     }
 }
